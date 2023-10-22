@@ -2,6 +2,8 @@
 
 #include <idc.idc>
 
+
+
 static GenerateSignature(start, end) 
 {
     auto signature = "";
@@ -13,15 +15,41 @@ static GenerateSignature(start, end)
         auto loop;
         auto byteValue = Byte(addr);
         auto op_size = isOpcodeX(addr, byteValue);
-        if (op_size != 0) 
+        auto mnem = instruction_type(addr);
+        auto instructionSize = ItemSize(addr);
+        Message("Instruction at 0x%x (%s) with size %d\n", addr, mnem, op_size);
+        if (op_size == 0){ continue; }
+        
+
+        signature = signature + separator + ByteToHex(byteValue);
+        for (loop = 1; loop < op_size; loop++)
         {
-            signature = signature + separator + ByteToHex(byteValue);
-            for (loop = 0; loop < op_size-1; loop++)
+            if (mnem == "lea" && instructionSize == 5 && loop < 2)
             {
-                signature = signature + separator +"?";   
+                byteValue = Byte(addr+loop);
+                signature = signature + separator + ByteToHex(byteValue);
             }
-            addr = addr+(op_size-1);
-        } 
+            else if (mnem == "lea" && instructionSize == 7 && loop < 2)
+            {
+                byteValue = Byte(addr+loop);
+                signature = signature + separator + ByteToHex(byteValue);
+            }
+            else if (mnem == "mov" && instructionSize == 3)
+            {
+                byteValue = Byte(addr+loop);
+                signature = signature + separator + ByteToHex(byteValue);
+            }
+            else if (mnem == "sub" && instructionSize == 7 && loop < 2)
+            {
+                byteValue = Byte(addr+loop);
+                signature = signature + separator + ByteToHex(byteValue);
+            }
+            else
+            {
+                signature = signature + separator + "?";
+            }    
+        }
+        addr = addr+(op_size-1);
     }
 
     return signature;
@@ -34,6 +62,14 @@ static isOpcodeX(addr, byteValue)
     //auto operandType = get_operand_type(address, operandIndex);
 
     return instructionSize;
+}
+
+
+static instruction_type(address)
+{
+    auto mnem =  print_insn_mnem(address);
+
+    return mnem;
 }
 
 static ByteToHex(byteValue) 
