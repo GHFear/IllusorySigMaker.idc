@@ -9,4 +9,6 @@ or if the file doesn't already exist you would have to create it or copy paste m
 
 **ida.idc:** Use only if you want to have the script auto start with all your IDA projects with *CLTR-ALT-S* hotkey functionality.
 
+Will improve this later on to include all good/safe op-codes for each instruction.
+
 /GHFear
