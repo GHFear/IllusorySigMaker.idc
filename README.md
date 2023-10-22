@@ -1,5 +1,7 @@
 # IllusorySigMaker.idc 0.0.2
+
 -**SigMaker .idc script For IDA. (Multiplatform)** <br>
+
 **-Latest Version:** 0.0.2 <br>
 
 **Information:**
