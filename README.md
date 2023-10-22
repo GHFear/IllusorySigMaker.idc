@@ -1,5 +1,6 @@
 # IllusorySigMaker.idc 0.0.2
 SigMaker .idc script For IDA. (Multiplatform)<br>
+Latest Version: 0.0.2
 
 Added an example ida.idc file that has our IllusorySigMaker script built into it with a shortcut/hotkeys.<br>
 To gain this functionality you would edit your existing "ida.idc" scipt in "/ida/idc/"<br>
