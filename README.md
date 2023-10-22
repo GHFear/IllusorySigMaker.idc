@@ -5,4 +5,8 @@ Added an example ida.idc file that has our IllusorySigMaker script built into it
 To gain this functionality you would edit your existing "ida.idc" scipt in "/ida/idc/"<br>
 or if the file doesn't already exist you would have to create it or copy paste my file into your folder.
 
+**IllusorySigMaker.idc:** Use like a normal idc script. (File->ScriptCommand->Import).
+
+**ida.idc:** Use only if you want to have the script auto start with all your IDA projects with CLTR-ALT-S hotkey functionality.
+
 /GHFear
